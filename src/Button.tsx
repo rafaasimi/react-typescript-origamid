@@ -1,13 +1,20 @@
-type ButtonProps = {
-  tamanho?: string;
-  children: React.ReactNode;
-  onClick?: () => void;
+// type ButtonProps = React.PropsWithChildren<{
+//   tamanho?: string;
+//   onClick?: () => void;
+// }>
+
+type ButtonProps = React.ComponentProps<'button'> & {
+  tamanho?: string
 }
 
-export function Button(props: ButtonProps) {
+export function Button({ tamanho, children, onClick, ...props }: ButtonProps) {
   return (
-    <button onClick={props.onClick} style={{fontSize: props.tamanho}}>
-      {props.children}
+    <button 
+      onClick={onClick} 
+      style={{fontSize: tamanho}}
+      {...props}
+    >
+      {children}
     </button>
   )
 }
