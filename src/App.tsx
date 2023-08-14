@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Button } from "./Button";
 import { Input } from "./Input";
+import { ButtonExercicio } from "./Tipos/ButtonExercicio";
 
 function App() {
   const [total, setTotal] = useState(0);
@@ -24,6 +25,9 @@ function App() {
       <Input id="senha" label="Senha" type="password"/>
       <Input value={data} onChange={(event) => setData(event.currentTarget.value)} id="data" label="Data" type="date"/>
       <Input id="horario" label="Horário" type="time"/>
+
+      {/* Exercicio - Tipos */}
+      <ButtonExercicio total={total} setTotal={setTotal}/>
     </div>
   )
 }

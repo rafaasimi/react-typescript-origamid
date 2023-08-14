@@ -8,9 +8,13 @@ type ButtonProps = React.ComponentProps<'button'> & {
 }
 
 export function Button({ tamanho, children, onClick, ...props }: ButtonProps) {
+  const handleClick: React.MouseEventHandler = (event) => {
+    console.log(event.pageX)
+  }
+
   return (
     <button 
-      onClick={onClick} 
+      onClick={handleClick} 
       style={{fontSize: tamanho}}
       {...props}
     >
