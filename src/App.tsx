@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { Button } from "./Button";
 import { Input } from "./Input";
-import { ButtonExercicio } from "./Tipos/ButtonExercicio";
+import { ButtonExercicio } from "./Interfaces_e_tipos/ButtonExercicio";
+import { Checkbox } from "./Eventos/Checkbox";
 
 function App() {
   const [total, setTotal] = useState(0);
@@ -28,6 +29,9 @@ function App() {
 
       {/* Exercicio - Tipos */}
       <ButtonExercicio total={total} setTotal={setTotal}/>
+
+      {/* Eventos */}
+      <Checkbox label="Termos e condições"/>
     </div>
   )
 }
