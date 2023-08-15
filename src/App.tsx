@@ -1,39 +1,41 @@
-import { useState } from "react"
-import { Button } from "./Button";
-import { Input } from "./Input";
-import { ButtonExercicio } from "./Interfaces_e_tipos/ButtonExercicio";
-import { Checkbox } from "./Eventos/Checkbox";
+import { useEffect, useState } from 'react';
+import { Button } from './Hooks/useState/Button';
+
+function user() {
+  return {
+    nome: 'Rafael',
+    profissao: 'Engenheiro',
+  };
+}
+
+type User = {
+  nome: string;
+  profissao: string;
+};
 
 function App() {
+  const [data, setData] = useState<null | User>(null);
   const [total, setTotal] = useState(0);
 
-  const [data, setData] = useState('');
-
-  function incrementar() {
-    setTotal((total) => total + 1)
-  }
+  useEffect(() => {
+    setTimeout(() => {
+      setData(user());
+    }, 1000);
+  }, []);
 
   return (
     <div>
-      <p>Total: {total}</p>
-      <p>Início da viagem: {data}</p>
-
-      <Button id="botao-principal" className="btn" onClick={incrementar} tamanho='1.25rem'>
-        Incrementar
-      </Button>
-
-      <Input id="email" label="E-mail" type="email"/>
-      <Input id="senha" label="Senha" type="password"/>
-      <Input value={data} onChange={(event) => setData(event.currentTarget.value)} id="data" label="Data" type="date"/>
-      <Input id="horario" label="Horário" type="time"/>
-
-      {/* Exercicio - Tipos */}
-      <ButtonExercicio total={total} setTotal={setTotal}/>
-
-      {/* Eventos */}
-      <Checkbox label="Termos e condições"/>
+      <div>
+        <p>Total: {total}</p>
+        <Button incrementar={setTotal}/>
+      </div>
+      {data && (
+        <div>
+          {data.nome}: {data.profissao}
+        </div>
+      )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
