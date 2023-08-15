@@ -1,39 +1,52 @@
 import { useEffect, useState } from 'react';
-import { Button } from './Hooks/useState/Button';
+import { Input } from './Hooks/useState/InputExercicio';
 
-function user() {
-  return {
-    nome: 'Rafael',
-    profissao: 'Engenheiro',
-  };
-}
-
-type User = {
+type Venda = {
+  id: string;
   nome: string;
-  profissao: string;
+  status: string;
 };
 
 function App() {
-  const [data, setData] = useState<null | User>(null);
-  const [total, setTotal] = useState(0);
+  const [data, setData] = useState<null | Venda[]>(null);
+  const [dateInicio, setDateInicio] = useState('');
+  const [dateFinal, setDateFinal] = useState('');
 
   useEffect(() => {
-    setTimeout(() => {
-      setData(user());
-    }, 1000);
-  }, []);
+    if (dateInicio && dateFinal) {
+      fetch(`https://data.origamid.dev/vendas?inicio=${dateInicio}&final=${dateFinal}`)
+      .then((response) => response.json())
+      .then((json) => setData(json as Venda[]))
+      .catch(error => console.log(error))
+    }
+  }, [dateInicio, dateFinal]);
+
 
   return (
     <div>
-      <div>
-        <p>Total: {total}</p>
-        <Button incrementar={setTotal}/>
-      </div>
-      {data && (
-        <div>
-          {data.nome}: {data.profissao}
-        </div>
-      )}
+      <Input
+        id="dataInicio"
+        label="Data início:"
+        setDate={setDateInicio}
+        type="date"
+        value={dateInicio}
+      />
+      <Input
+        id="dataFinal"
+        label="Data final:"
+        setDate={setDateFinal}
+        type="date"
+        value={dateFinal}
+      />
+
+      <ul>
+        {data &&
+          data.map((venda) => (
+            <li key={venda.id}>
+              {venda.nome}: {venda.status}
+            </li>
+          ))}
+      </ul>
     </div>
   );
 }
