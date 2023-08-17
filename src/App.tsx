@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Input } from './Hooks/useState/InputExercicio';
+import React from 'react';
+import videoSrc from './video.mp4';
 
 type Venda = {
   id: string;
@@ -8,25 +8,21 @@ type Venda = {
 };
 
 function App() {
+  const video = React.useRef<HTMLVideoElement>(null)
 
-  function useEffectCallBack() {
-    console.log('Montou');
-    return () => {
-      console.log('Desmontou');
-    }
-  }
+  React.useEffect(() => {
+    console.log(video.current)
+  }, [])
 
-  useEffect(useEffectCallBack, []);
-
-
-  // useEffect(() => {
-  //   console.log('Montou');
-  //   return () => {
-  //     console.log('Desmontou');
-  //   };
-  // }, []);
-
-  return <div>Effect</div>;
+  return (
+    <div>
+      <div className='flex'>
+        <button onClick={() => video.current?.play()}>Play</button>
+        <button onClick={() => video.current?.pause()}>Pause</button>
+      </div>
+      <video controls ref={video} src={videoSrc}></video>
+    </div>
+  );
 }
 
 export default App;
