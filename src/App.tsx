@@ -8,47 +8,25 @@ type Venda = {
 };
 
 function App() {
-  const [data, setData] = useState<null | Venda[]>(null);
-  const [dateInicio, setDateInicio] = useState('');
-  const [dateFinal, setDateFinal] = useState('');
 
-  useEffect(() => {
-    if (dateInicio && dateFinal) {
-      fetch(`https://data.origamid.dev/vendas?inicio=${dateInicio}&final=${dateFinal}`)
-      .then((response) => response.json())
-      .then((json) => setData(json as Venda[]))
-      .catch(error => console.log(error))
+  function useEffectCallBack() {
+    console.log('Montou');
+    return () => {
+      console.log('Desmontou');
     }
-  }, [dateInicio, dateFinal]);
+  }
+
+  useEffect(useEffectCallBack, []);
 
 
-  return (
-    <div>
-      <Input
-        id="dataInicio"
-        label="Data início:"
-        setDate={setDateInicio}
-        type="date"
-        value={dateInicio}
-      />
-      <Input
-        id="dataFinal"
-        label="Data final:"
-        setDate={setDateFinal}
-        type="date"
-        value={dateFinal}
-      />
+  // useEffect(() => {
+  //   console.log('Montou');
+  //   return () => {
+  //     console.log('Desmontou');
+  //   };
+  // }, []);
 
-      <ul>
-        {data &&
-          data.map((venda) => (
-            <li key={venda.id}>
-              {venda.nome}: {venda.status}
-            </li>
-          ))}
-      </ul>
-    </div>
-  );
+  return <div>Effect</div>;
 }
 
 export default App;
