@@ -1,12 +1,13 @@
-import { useUI } from './Context/UIContext';
+import { useUserContext } from './Context/UserContext';
 
 export function Header() {
-  const { dark, setDark } = useUI();
+  const { data } = useUserContext();
+
+  if (!data) return null;
 
   return (
     <header>
-      <h1>{dark ? 'Dark Mode' : 'Light Mode'}</h1>
-      <button onClick={() => setDark((state) => !state)}>Alterar tema</button>
+      <h1>Nome: {data?.nome}</h1>
     </header>
   );
 }

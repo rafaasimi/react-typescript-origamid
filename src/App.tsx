@@ -1,4 +1,6 @@
+import { Content } from './Content';
 import { UIContextProvider } from './Context/UIContext';
+import { UserContextProvider } from './Context/UserContext';
 import { Header } from './Header';
 
 type Produto = {
@@ -12,7 +14,10 @@ type Produto = {
 function App() {
   return (
     <UIContextProvider>
-      <Header />
+      <UserContextProvider>
+        <Header />
+        <Content />
+      </UserContextProvider>
     </UIContextProvider>
   );
 }
