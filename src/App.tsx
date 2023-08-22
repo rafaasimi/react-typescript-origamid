@@ -1,30 +1,45 @@
 import React from 'react';
-import videoSrc from './video.mp4';
-import useLocalStorage from './Hooks/custom_hooks/useLocalStorage';
+import useFetch from './Hooks/custom_hooks/useFetch';
+
+type Produto = {
+  id: string;
+  nome: string;
+  preco: number;
+  quantidade: number;
+  internacional: boolean;
+};
 
 function App() {
-  const video = React.useRef<HTMLVideoElement>(null);
-  const [volume, setVolume] = useLocalStorage('volume', '0');
-
-  React.useEffect(() => {
-    if (!video.current) return;
-
-    const vol = Number(volume);
-
-    if (vol >= 0 && vol <= 1) {
-      video.current.volume = Number(volume);
-    }
-  }, [volume]);
+  const [id, setId] = React.useState('p001');
+  const produtos = useFetch<Produto[]>('https://data.origamid.dev/produtos');
+  const produto = useFetch<Produto>(`https://data.origamid.dev/produtos/${id}`, {
+    cache: 'force-cache'
+  });
 
   return (
-    <div>
-      <div className="flex">
-        <button onClick={() => setVolume('0')}>0</button>
-        <button onClick={() => setVolume('0.5')}>50</button>
-        <button onClick={() => setVolume('1')}>100</button>
-        <button onClick={() => setVolume('2')}>200 (Erro)</button>
+    <div className="flex">
+      <div>
+        {produtos.data &&
+          produtos.data.map((produto) => (
+            <button key={produto.id} onClick={() => setId(produto.id)}>
+              {produto.id} : {produto.nome}
+            </button>
+          ))}
       </div>
-      <video controls ref={video} src={videoSrc}></video>
+      <div>
+        {produto.loading && <div>Carregando...</div>}
+        {produto.data && (
+          <ul>
+            <li>ID: {produto.data.id}</li>
+            <li>Nome: {produto.data.nome}</li>
+            <li>Preço: {produto.data.preco}</li>
+            <li>Quantidade: {produto.data.quantidade}</li>
+            <li>
+              É internacional? {produto.data.internacional ? 'Sim' : 'Não'}
+            </li>
+          </ul>
+        )}
+      </div>
     </div>
   );
 }
