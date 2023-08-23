@@ -1,24 +1,15 @@
-import { Content } from './Content';
-import { UIContextProvider } from './Context/UIContext';
-import { UserContextProvider } from './Context/UserContext';
-import { Header } from './Header';
+import { Form } from './Form';
 
-type Produto = {
-  id: string;
-  nome: string;
-  preco: number;
-  quantidade: number;
-  internacional: boolean;
-};
+
 
 function App() {
+
+
   return (
-    <UIContextProvider>
-      <UserContextProvider>
-        <Header />
-        <Content />
-      </UserContextProvider>
-    </UIContextProvider>
+    <div>
+      <h1>Formulário</h1>
+      <Form />
+    </div>
   );
 }
 
