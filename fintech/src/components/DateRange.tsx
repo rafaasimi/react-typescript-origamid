@@ -13,7 +13,7 @@ export function DateRange() {
         onChange={({ target }) => setInicio(target.value)}
       />
       <DateInput
-        label="Início"
+        label="Final"
         value={final}
         onChange={({ target }) => setFinal(target.value)}
       />
