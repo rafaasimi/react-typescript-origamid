@@ -6,7 +6,7 @@ export function DateRange() {
   const [final, setFinal] = React.useState('');
 
   return (
-    <div>
+    <form className="box flex" onSubmit={(event) => event.preventDefault()}>
       <DateInput
         label="Início"
         value={inicio}
@@ -17,6 +17,6 @@ export function DateRange() {
         value={final}
         onChange={({ target }) => setFinal(target.value)}
       />
-    </div>
+    </form>
   );
 }

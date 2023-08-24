@@ -4,9 +4,9 @@ type IDateInput = React.ComponentProps<'input'> & {
 
 export function DateInput({ label, ...props }: IDateInput) {
   return (
-    <form onSubmit={(event) => event.preventDefault()}>
+    <div>
       <label htmlFor={label}>{label}</label>
       <input id={label} name={label} type="date" {...props} />
-    </form>
+    </div>
   );
 }
