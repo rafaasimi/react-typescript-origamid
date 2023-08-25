@@ -44,12 +44,12 @@ ul {
   gap: var(--gap)
 }
 
-flex > * {
+.flex > * {
   flex: 1;
 }
 
 .mb {
-  margin-botton: var(--gap);
+  margin-bottom: var(--gap);
 }
 
 .bg-1 {

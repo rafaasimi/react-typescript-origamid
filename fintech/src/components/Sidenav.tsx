@@ -1,5 +1,5 @@
 export function Sidenav() {
   return (
-    <aside>Sidenav</aside>
+    <aside className="mb">Sidenav</aside>
   )
 }
