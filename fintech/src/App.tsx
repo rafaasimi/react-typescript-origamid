@@ -2,6 +2,7 @@ import { Header } from './components/Header';
 import { Sidenav } from './components/Sidenav';
 import { DataContextProvider } from './contexts/DataContext';
 import { Resumo } from './pages/Resumo';
+import { Vendas } from './pages/Vendas';
 import './styles.css';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <main>
           <Header />
           <Resumo />
+          <Vendas />
         </main>
       </DataContextProvider>
     </div>
