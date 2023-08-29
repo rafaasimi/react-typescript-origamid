@@ -75,7 +75,45 @@ ul {
 .container {
   display: grid;
   padding: var(--gap);
-  gap: (--gap);
+  gap: var(--gap);
+  grid-template-columns: 240px auto;
+}
+
+/* SIDENAV */
+.sidenav li{
+  display: flex;
+  align-items: center;
+  gap: var(--gap-s)
+}
+
+.sidenav li span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  background: var(--color-4);
+  border-radius: var(--gap)
+}
+
+.sidenav li a {
+  flex: 1;
+  font-size: 1.125rem;
+  text-decoration: none;
+  color: var(--color-1);
+  padding: var(--gap-s) 0;
+}
+
+.sidenav li:hover span{
+  background: var(--color-3);
+}
+
+/* DageRange */
+.daterange {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap)
+
 }
 
 /* RESUMO */
