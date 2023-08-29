@@ -68,10 +68,10 @@ export function GraficoVendas({ data }: { data: IVenda[] }) {
           <Line
             type="monotone"
             dataKey="processando"
-            stroke="#FBCB21"
+            stroke="#fb9521"
             strokeWidth={3}
           />
-          <Line type="monotone" dataKey="falha" stroke="#000" strokeWidth={3} />
+          <Line type="monotone" dataKey="falha" stroke="#d33030" strokeWidth={3} />
         </LineChart>
       </ResponsiveContainer>
     </div>
