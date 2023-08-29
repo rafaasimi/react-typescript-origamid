@@ -1,4 +1,5 @@
-import logoImg from '../assets/fintech.svg';
+import { NavLink } from 'react-router-dom'
+
 import resumoIcon from '../assets/icons/resumo.svg';
 import vendasIcon from '../assets/icons/vendas.svg';
 import webhooksIcon from '../assets/icons/webhooks.svg';
@@ -17,13 +18,13 @@ export function Sidenav() {
           <span>
             <img src={resumoIcon} alt="" />
           </span>
-          <a href="">Resumo</a>
+          <NavLink to={'/'}>Resumo</NavLink>
         </li>
         <li>
           <span>
             <img src={vendasIcon} alt="" />
           </span>
-          <a href="">Vendas</a>
+          <NavLink to={'/vendas'}>Vendas</NavLink>
         </li>
         <li>
           <span>
