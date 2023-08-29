@@ -1,3 +1,4 @@
+import { GraficoVendas } from '../components/GraficoVendas';
 import { useData } from '../contexts/DataContext';
 
 export function Resumo() {
@@ -48,7 +49,9 @@ export function Resumo() {
         </div>
       </div>
 
-      <div className="box mb">Gráficos</div>
+      <div className="box mb">
+        <GraficoVendas data={data}/>
+      </div>
     </section>
   );
 }
